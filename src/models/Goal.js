@@ -11,22 +11,22 @@ const TaskSchema = new mongoose.Schema({
 
 const GoalSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },        // "Belajar React"
-    duration_weeks: { type: Number, required: true }, // 4 (minggu)
-    level: { 
-      type: String, 
+    title: { type: String, required: true },
+    duration_weeks: { type: Number, required: true },
+    level: {
+      type: String,
       enum: ["beginner", "intermediate", "advanced"],
-      required: true 
+      required: true,
     },
-    description: { type: String },                  // deskripsi tambahan
-    roadmap: [TaskSchema],                          // array task harian
+    description: { type: String },
+    ai_summary: { type: String },        // ← tambahan baru
+    roadmap: [TaskSchema],
     total_tasks: { type: Number, default: 0 },
     completed_tasks: { type: Number, default: 0 },
   },
-  { 
-    timestamps: true  // otomatis tambah createdAt & updatedAt
+  {
+    timestamps: true,
   }
 );
 
-// Hindari model duplicate di development (hot reload issue)
 export default mongoose.models.Goal || mongoose.model("Goal", GoalSchema);

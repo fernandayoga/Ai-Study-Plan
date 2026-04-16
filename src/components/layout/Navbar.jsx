@@ -9,9 +9,11 @@ const navLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
 ];
 
+const disabledPath = ["/goals/new", "/goals/[id]"]; // Path yang dianggap "aktif" tapi belum ada link di navbar
 export default function Navbar() {
   const pathname = usePathname();
-
+  console.log("Current path:", pathname); // Debugging: cek path saat ini
+  const showNavLinks = !disabledPath.includes(pathname); 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-surface-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -46,12 +48,15 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <Link href="/goals/new">
-            <Button size="sm">
-              <Plus size={16} className="mr-1.5" />
-              New Goal
-            </Button>
-          </Link>
+          {showNavLinks && (
+            <Link href="/goals/new">
+              <Button size="sm">
+                <Plus size={16} className="mr-1.5" />
+                New Goal
+              </Button>
+            </Link>
+          )}
+         
 
         </div>
       </div>

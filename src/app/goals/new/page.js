@@ -47,11 +47,13 @@ export default function NewGoalPage() {
       });
 
       const data = await res.json();
+      console.log("API Response:", data);
+      setLoading(false);
 
       if (!res.ok) throw new Error(data.message || "Gagal generate roadmap");
 
       // Redirect ke halaman detail goal
-      router.push(`/goals/${data.goalId}`);
+      // router.push(`/goals/${data.goalId}`);
       
     } catch (err) {
       setError(err.message);
