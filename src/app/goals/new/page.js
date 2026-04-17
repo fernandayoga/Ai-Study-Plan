@@ -2,14 +2,37 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Sparkles, BookOpen, Clock, BarChart2, FileText, ArrowRight, Loader2 } from "lucide-react";
+import {
+  Sparkles,
+  BookOpen,
+  Clock,
+  BarChart2,
+  FileText,
+  ArrowRight,
+  Loader2,
+} from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 
 const levels = [
-  { value: "beginner", label: "Beginner", desc: "Belum tahu sama sekali", emoji: "🌱" },
-  { value: "intermediate", label: "Intermediate", desc: "Sudah tahu dasarnya", emoji: "🌿" },
-  { value: "advanced", label: "Advanced", desc: "Sudah cukup berpengalaman", emoji: "🌳" },
+  {
+    value: "beginner",
+    label: "Beginner",
+    desc: "Belum tahu sama sekali",
+    emoji: "🌱",
+  },
+  {
+    value: "intermediate",
+    label: "Intermediate",
+    desc: "Sudah tahu dasarnya",
+    emoji: "🌿",
+  },
+  {
+    value: "advanced",
+    label: "Advanced",
+    desc: "Sudah cukup berpengalaman",
+    emoji: "🌳",
+  },
 ];
 
 const durations = [1, 2, 4, 8, 12];
@@ -18,7 +41,7 @@ export default function NewGoalPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -53,8 +76,7 @@ export default function NewGoalPage() {
       if (!res.ok) throw new Error(data.message || "Gagal generate roadmap");
 
       // Redirect ke halaman detail goal
-      // router.push(`/goals/${data.goalId}`);
-      
+      router.push(`/goals/${data.goalId}`);
     } catch (err) {
       setError(err.message);
       setLoading(false);
@@ -63,7 +85,6 @@ export default function NewGoalPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-      
       {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-600 rounded-2xl mb-4 shadow-md">
@@ -78,7 +99,6 @@ export default function NewGoalPage() {
       </div>
 
       <Card className="p-8 space-y-8">
-
         {/* Input Topik */}
         <div>
           <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
@@ -116,7 +136,7 @@ export default function NewGoalPage() {
             <BarChart2 size={16} className="text-primary-600" />
             Level Saat Ini
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {levels.map((lvl) => (
               <button
                 key={lvl.value}
@@ -128,7 +148,13 @@ export default function NewGoalPage() {
                 }`}
               >
                 <div className="text-2xl mb-1">{lvl.emoji}</div>
-                <div className={`text-sm font-semibold ${form.level === lvl.value ? "text-primary-600" : "text-gray-700"}`}>
+                <div
+                  className={`text-sm font-semibold ${
+                    form.level === lvl.value
+                      ? "text-primary-600"
+                      : "text-gray-700"
+                  }`}
+                >
                   {lvl.label}
                 </div>
                 <div className="text-xs text-gray-400 mt-0.5">{lvl.desc}</div>
@@ -170,11 +196,19 @@ export default function NewGoalPage() {
         {/* Preview */}
         {form.title && (
           <div className="bg-surface-50 rounded-xl p-4 border border-surface-200">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Preview Goal</p>
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+              Preview Goal
+            </p>
             <p className="text-sm text-gray-700">
-              Belajar <span className="font-semibold text-primary-600">"{form.title}"</span> selama{" "}
-              <span className="font-semibold">{form.duration_weeks} minggu</span> untuk level{" "}
-              <span className="font-semibold">{form.level}</span>.
+              Belajar{" "}
+              <span className="font-semibold text-primary-600">
+                "{form.title}"
+              </span>{" "}
+              selama{" "}
+              <span className="font-semibold">
+                {form.duration_weeks} minggu
+              </span>{" "}
+              untuk level <span className="font-semibold">{form.level}</span>.
             </p>
           </div>
         )}
@@ -203,7 +237,6 @@ export default function NewGoalPage() {
         <p className="text-center text-xs text-gray-400">
           Proses generate membutuhkan 10-30 detik ⏱️
         </p>
-
       </Card>
     </div>
   );
