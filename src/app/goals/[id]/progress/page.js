@@ -34,6 +34,7 @@ export default function ProgressPage() {
     try {
       const res = await fetch(`/api/goals/${id}`);
       const data = await res.json();
+      
       if (data.success) setGoal(data.goal);
     } catch (error) {
       console.error(error);
@@ -41,6 +42,8 @@ export default function ProgressPage() {
       setLoading(false);
     }
   };
+
+
 
   if (loading) {
     return (
@@ -64,6 +67,7 @@ export default function ProgressPage() {
   }
 
   const stats = calcDetailedStats(goal.roadmap);
+  console.log(stats)
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">

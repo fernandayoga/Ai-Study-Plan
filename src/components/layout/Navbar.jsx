@@ -33,7 +33,7 @@ export default function Navbar() {
           </Link>
 
           {/* Nav Links */}
-          { ShowDashboard && (
+          {/* { ShowDashboard && (
             <div className="hidden sm:flex items-center gap-1">
             {navLinks.map(({ href, label, icon: Icon }) => (
               <Link
@@ -50,7 +50,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          )}
+          )} */}
           
 
           {/* CTA Button */}

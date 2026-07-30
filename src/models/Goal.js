@@ -11,6 +11,11 @@ const TaskSchema = new mongoose.Schema({
 
 const GoalSchema = new mongoose.Schema(
   {
+    userId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User",
+      required: true   // ← wajib sekarang
+    },
     title: { type: String, required: true },
     duration_weeks: { type: Number, required: true },
     level: {
@@ -19,14 +24,12 @@ const GoalSchema = new mongoose.Schema(
       required: true,
     },
     description: { type: String },
-    ai_summary: { type: String },        // ← tambahan baru
+    ai_summary: { type: String },
     roadmap: [TaskSchema],
     total_tasks: { type: Number, default: 0 },
     completed_tasks: { type: Number, default: 0 },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 export default mongoose.models.Goal || mongoose.model("Goal", GoalSchema);

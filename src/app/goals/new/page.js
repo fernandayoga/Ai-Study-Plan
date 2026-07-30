@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
+  ArrowLeft,
   Sparkles,
   BookOpen,
   Clock,
@@ -10,6 +11,8 @@ import {
   FileText,
   ArrowRight,
   Loader2,
+  Book,
+  GraduationCap,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
@@ -19,19 +22,19 @@ const levels = [
     value: "beginner",
     label: "Beginner",
     desc: "Belum tahu sama sekali",
-    emoji: "🌱",
+    icon: Book,
   },
   {
     value: "intermediate",
     label: "Intermediate",
     desc: "Sudah tahu dasarnya",
-    emoji: "🌿",
+    icon: BookOpen,
   },
   {
     value: "advanced",
     label: "Advanced",
     desc: "Sudah cukup berpengalaman",
-    emoji: "🌳",
+    icon: GraduationCap,
   },
 ];
 
@@ -85,6 +88,15 @@ export default function NewGoalPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
+      {/* Back Button */}
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors cursor-pointer"
+            >
+              <ArrowLeft size={16} />
+              Kembali ke Dashboard
+            </button>
+      
       {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-600 rounded-2xl mb-4 shadow-md">
@@ -147,7 +159,14 @@ export default function NewGoalPage() {
                     : "border-surface-200 bg-white hover:border-surface-300"
                 }`}
               >
-                <div className="text-2xl mb-1">{lvl.emoji}</div>
+                <div className="mb-2 flex items-center">
+                  <lvl.icon 
+                    size={28} 
+                    className={`transition-colors ${
+                      form.level === lvl.value ? "text-primary-600" : "text-gray-400"
+                    }`}
+                  />
+                </div>
                 <div
                   className={`text-sm font-semibold ${
                     form.level === lvl.value

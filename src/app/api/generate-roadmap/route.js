@@ -3,9 +3,18 @@ import connectDB from "@/lib/mongodb";
 import Goal from "@/models/Goal";
 import { generateRoadmap } from "@/lib/ai";
 import { parseAIResponse, validateRoadmap } from "@/lib/utils";
+import { auth } from "@/lib/auth";
 
 export async function POST(request) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     // 1. Ambil data dari request
     const body = await request.json();
     const { title, description, duration_weeks, level } = body;
@@ -50,6 +59,7 @@ export async function POST(request) {
     await connectDB();
 
     const goal = await Goal.create({
+      userId: session.user.id,
       title,
       description,
       duration_weeks,

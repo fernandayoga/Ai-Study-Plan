@@ -1,14 +1,20 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Goal from "@/models/Goal";
+import { auth } from "@/lib/auth";
 
 export async function GET(request, { params }) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+    }
+
     await connectDB();
 
     const { id } = await params; // ← tambah await di sini
 
-    const goal = await Goal.findById(id);
+    const goal = await Goal.findOne({ _id: id, userId: session.user.id });
 
     if (!goal) {
       return NextResponse.json(
@@ -29,6 +35,11 @@ export async function GET(request, { params }) {
 
 export async function PATCH(request, { params }) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+    }
+
     await connectDB();
 
     const { id } = await params; // ← tambah await di sini
@@ -38,6 +49,7 @@ export async function PATCH(request, { params }) {
     const goal = await Goal.findOneAndUpdate(
       {
         _id: id,
+        userId: session.user.id,
         "roadmap._id": taskId,
       },
       {
@@ -73,11 +85,16 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+    }
+
     await connectDB();
 
     const { id } = await params; // ← tambah await di sini
 
-    await Goal.findByIdAndDelete(id);
+    await Goal.findOneAndDelete({ _id: id, userId: session.user.id });
 
     return NextResponse.json({
       success: true,

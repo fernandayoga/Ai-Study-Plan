@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar, BarChart2, ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { Calendar, BarChart2, ArrowRight, CheckCircle2, Clock, Book, BookOpen, GraduationCap } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import { calcProgress, formatDuration } from "@/lib/utils";
@@ -9,9 +9,9 @@ export default function GoalCard({ goal }) {
   const isDone = progress === 100;
 
   const levelConfig = {
-    beginner: { variant: "success", label: "Beginner", emoji: "🌱" },
-    intermediate: { variant: "warning", label: "Intermediate", emoji: "🌿" },
-    advanced: { variant: "danger", label: "Advanced", emoji: "🌳" },
+    beginner: { variant: "success", label: "Beginner", icon: Book },
+    intermediate: { variant: "warning", label: "Intermediate", icon: BookOpen },
+    advanced: { variant: "danger", label: "Advanced", icon: GraduationCap },
   };
 
   const level = levelConfig[goal.level] || levelConfig.beginner;
@@ -25,7 +25,8 @@ export default function GoalCard({ goal }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
               <Badge variant={level.variant}>
-                {level.emoji} {level.label}
+                <level.icon size={12} className="inline-block mr-1" />
+                {level.label}
               </Badge>
               {isDone && (
                 <Badge variant="success">
