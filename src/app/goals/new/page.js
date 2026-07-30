@@ -91,7 +91,7 @@ export default function NewGoalPage() {
       {/* Back Button */}
             <button
               onClick={() => router.push("/dashboard")}
-              className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors cursor-pointer"
+              className="flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
             >
               <ArrowLeft size={16} />
               Kembali ke Dashboard
@@ -102,10 +102,10 @@ export default function NewGoalPage() {
         <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-600 rounded-2xl mb-4 shadow-md">
           <Sparkles size={24} className="text-white" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Buat Rencana Belajar
         </h1>
-        <p className="text-gray-500">
+        <p className="text-gray-300">
           Ceritakan goal kamu, AI akan buatkan roadmap yang personal
         </p>
       </div>
@@ -113,8 +113,8 @@ export default function NewGoalPage() {
       <Card className="p-8 space-y-8">
         {/* Input Topik */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-            <BookOpen size={16} className="text-primary-600" />
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-200 mb-2">
+            <BookOpen size={16} className="text-primary-400" />
             Topik yang Ingin Dipelajari
           </label>
           <input
@@ -122,14 +122,14 @@ export default function NewGoalPage() {
             placeholder="Contoh: React.js, Machine Learning, UI/UX Design..."
             value={form.title}
             onChange={(e) => handleChange("title", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-surface-200 bg-surface-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition text-sm"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-black/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition text-sm"
           />
         </div>
 
         {/* Input Deskripsi */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-            <FileText size={16} className="text-primary-600" />
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-200 mb-2">
+            <FileText size={16} className="text-primary-400" />
             Deskripsi Tambahan
             <span className="text-gray-400 font-normal">(opsional)</span>
           </label>
@@ -138,14 +138,14 @@ export default function NewGoalPage() {
             value={form.description}
             onChange={(e) => handleChange("description", e.target.value)}
             rows={3}
-            className="w-full px-4 py-3 rounded-xl border border-surface-200 bg-surface-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition text-sm resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-black/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition text-sm resize-none"
           />
         </div>
 
         {/* Pilih Level */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
-            <BarChart2 size={16} className="text-primary-600" />
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-200 mb-3">
+            <BarChart2 size={16} className="text-primary-400" />
             Level Saat Ini
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -155,23 +155,23 @@ export default function NewGoalPage() {
                 onClick={() => handleChange("level", lvl.value)}
                 className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                   form.level === lvl.value
-                    ? "border-primary-500 bg-primary-50"
-                    : "border-surface-200 bg-white hover:border-surface-300"
+                    ? "border-primary-500 bg-primary-500/20"
+                    : "border-white/10 bg-black/30 hover:border-white/30"
                 }`}
               >
                 <div className="mb-2 flex items-center">
                   <lvl.icon 
                     size={28} 
                     className={`transition-colors ${
-                      form.level === lvl.value ? "text-primary-600" : "text-gray-400"
+                      form.level === lvl.value ? "text-primary-400" : "text-gray-400"
                     }`}
                   />
                 </div>
                 <div
                   className={`text-sm font-semibold ${
                     form.level === lvl.value
-                      ? "text-primary-600"
-                      : "text-gray-700"
+                      ? "text-primary-400"
+                      : "text-gray-200"
                   }`}
                 >
                   {lvl.label}
@@ -184,8 +184,8 @@ export default function NewGoalPage() {
 
         {/* Pilih Durasi */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
-            <Clock size={16} className="text-primary-600" />
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-200 mb-3">
+            <Clock size={16} className="text-primary-400" />
             Durasi Belajar
           </label>
           <div className="flex flex-wrap gap-2">
@@ -195,8 +195,8 @@ export default function NewGoalPage() {
                 onClick={() => handleChange("duration_weeks", week)}
                 className={`px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${
                   form.duration_weeks === week
-                    ? "border-primary-500 bg-primary-50 text-primary-600"
-                    : "border-surface-200 bg-white text-gray-600 hover:border-surface-300"
+                    ? "border-primary-500 bg-primary-500/20 text-primary-400"
+                    : "border-white/10 bg-black/30 text-gray-300 hover:border-white/30"
                 }`}
               >
                 {week} {week === 1 ? "Minggu" : "Minggu"}
@@ -214,20 +214,20 @@ export default function NewGoalPage() {
 
         {/* Preview */}
         {form.title && (
-          <div className="bg-surface-50 rounded-xl p-4 border border-surface-200">
+          <div className="bg-black/20 rounded-xl p-4 border border-white/10">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
               Preview Goal
             </p>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-200">
               Belajar{" "}
-              <span className="font-semibold text-primary-600">
+              <span className="font-semibold text-primary-400">
                 "{form.title}"
               </span>{" "}
               selama{" "}
-              <span className="font-semibold">
+              <span className="font-semibold text-white">
                 {form.duration_weeks} minggu
               </span>{" "}
-              untuk level <span className="font-semibold">{form.level}</span>.
+              untuk level <span className="font-semibold text-white">{form.level}</span>.
             </p>
           </div>
         )}

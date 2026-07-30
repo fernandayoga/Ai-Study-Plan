@@ -32,8 +32,8 @@ export default function TaskCard({ task, goalId, onUpdate }) {
   return (
     <div className={`flex items-start gap-4 p-4 rounded-xl border transition-all duration-200 ${
       task.is_completed
-        ? "bg-green-50 border-green-200"
-        : "bg-white border-surface-200 hover:border-primary-200 hover:shadow-sm"
+        ? "bg-green-500/10 border-green-500/30"
+        : "bg-black/30 border-white/10 hover:border-primary-400 hover:shadow-sm"
     }`}>
       
       {/* Checkbox */}
@@ -43,7 +43,7 @@ export default function TaskCard({ task, goalId, onUpdate }) {
         className="mt-0.5 flex-shrink-0 cursor-pointer"
       >
         {loading ? (
-          <Loader2 size={22} className="animate-spin text-primary-500" />
+          <Loader2 size={22} className={`animate-spin ${task.is_completed ? "text-green-500" : "text-primary-500"}`} />
         ) : task.is_completed ? (
           <CheckCircle2 size={22} className="text-green-500" />
         ) : (
@@ -58,14 +58,14 @@ export default function TaskCard({ task, goalId, onUpdate }) {
             Day {task.day}
           </Badge>
           <span className={`text-sm font-semibold ${
-            task.is_completed ? "text-green-700 line-through" : "text-gray-800"
+            task.is_completed ? "text-green-400 " : "text-white"
           }`}>
             {task.topic}
           </span>
         </div>
         
         <p className={`text-sm leading-relaxed ${
-          task.is_completed ? "text-green-600 line-through" : "text-gray-500"
+          task.is_completed ? "text-green-500/80 " : "text-gray-300"
         }`}>
           {task.task}
         </p>

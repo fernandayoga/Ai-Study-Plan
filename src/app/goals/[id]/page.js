@@ -67,7 +67,7 @@ export default function GoalDetailPage() {
             size={32}
             className="animate-spin text-primary-500 mx-auto mb-3"
           />
-          <p className="text-gray-500 text-sm">Memuat roadmap...</p>
+          <p className="text-gray-300 text-sm">Memuat roadmap...</p>
         </div>
       </div>
     );
@@ -78,7 +78,7 @@ export default function GoalDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-500 mb-4">Goal tidak ditemukan</p>
+          <p className="text-gray-300 mb-4">Goal tidak ditemukan</p>
           <Button onClick={() => router.push("/dashboard")}>
             Kembali ke Dashboard
           </Button>
@@ -99,7 +99,7 @@ export default function GoalDetailPage() {
       {/* Back Button */}
       <button
         onClick={() => router.push("/dashboard")}
-        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors cursor-pointer"
+        className="flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
       >
         <ArrowLeft size={16} />
         Kembali ke Dashboard
@@ -123,13 +123,13 @@ export default function GoalDetailPage() {
               )}
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">
+            <h1 className="text-2xl font-bold text-white mb-1">
               {goal.title}
             </h1>
 
             {goal.ai_summary && (
-              <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                <Sparkles size={12} className="inline mr-1 text-primary-500" />
+              <p className="text-sm text-gray-300 leading-relaxed mt-2">
+                <Sparkles size={12} className="inline mr-1 text-primary-400" />
                 {goal.ai_summary}
               </p>
             )}
@@ -160,18 +160,18 @@ export default function GoalDetailPage() {
         </div>
 
         {/* Progress Section */}
-        <div className="mt-5 pt-5 border-t border-surface-200">
+        <div className="mt-5 pt-5 border-t border-white/10">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-600">
+            <span className="text-sm font-medium text-gray-200">
               Progress Keseluruhan
             </span>
-            <span className="text-sm font-bold text-primary-600">
+            <span className="text-sm font-bold text-primary-400">
               {progress}%
             </span>
           </div>
 
           {/* Progress Bar */}
-          <div className="h-2.5 bg-surface-200 rounded-full overflow-hidden">
+          <div className="h-2.5 bg-white/10 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-700 ${
                 progress === 100 ? "bg-green-500" : "bg-primary-500"
@@ -193,8 +193,8 @@ export default function GoalDetailPage() {
 
       {/* Roadmap */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-          <Target size={18} className="text-primary-600" />
+        <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <Target size={18} className="text-primary-400" />
           Roadmap Belajar
         </h2>
 

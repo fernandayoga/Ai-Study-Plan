@@ -57,7 +57,7 @@ export default function ProgressPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-500 mb-4">Goal tidak ditemukan</p>
+          <p className="text-gray-300 mb-4">Goal tidak ditemukan</p>
           <Button onClick={() => router.push("/dashboard")}>
             Kembali ke Dashboard
           </Button>
@@ -75,7 +75,7 @@ export default function ProgressPage() {
       {/* Back */}
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors cursor-pointer"
+        className="flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
       >
         <ArrowLeft size={16} />
         Kembali
@@ -83,11 +83,11 @@ export default function ProgressPage() {
 
       {/* Page Title */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <TrendingUp size={22} className="text-primary-600" />
+        <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <TrendingUp size={22} className="text-primary-400" />
           Progress Tracking
         </h1>
-        <p className="text-gray-500 text-sm mt-1">{goal.title}</p>
+        <p className="text-gray-300 text-sm mt-1">{goal.title}</p>
       </div>
 
       {/* Overall Progress Card */}
@@ -96,14 +96,14 @@ export default function ProgressPage() {
           <ProgressRing progress={stats.progress} size={90} strokeWidth={7} />
           
           <div className="flex-1">
-            <h2 className="font-semibold text-gray-800 mb-1">
+            <h2 className="font-semibold text-white mb-1">
               {stats.progress === 100 
                 ? "🎉 Selamat! Roadmap Selesai!" 
                 : stats.progress > 0 
                 ? "Terus semangat!" 
                 : "Yuk mulai belajar!"}
             </h2>
-            <p className="text-sm text-gray-500 mb-3">
+            <p className="text-sm text-gray-300 mb-3">
               {stats.completedTasks} dari {stats.totalTasks} task sudah selesai
             </p>
             <div className="flex flex-wrap gap-2">
@@ -124,11 +124,11 @@ export default function ProgressPage() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <Card className="p-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-              <Clock size={18} className="text-blue-600" />
+            <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center">
+              <Clock size={18} className="text-blue-400" />
             </div>
             <div>
-              <p className="text-sm font-bold text-gray-800">
+              <p className="text-sm font-bold text-white">
                 {formatMinutes(stats.completedEstimatedMinutes)}
               </p>
               <p className="text-xs text-gray-400">Waktu Belajar</p>
@@ -138,11 +138,11 @@ export default function ProgressPage() {
 
         <Card className="p-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center">
-              <Trophy size={18} className="text-purple-600" />
+            <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
+              <Trophy size={18} className="text-purple-400" />
             </div>
             <div>
-              <p className="text-sm font-bold text-gray-800">
+              <p className="text-sm font-bold text-white">
                 {formatMinutes(stats.totalEstimatedMinutes - stats.completedEstimatedMinutes)}
               </p>
               <p className="text-xs text-gray-400">Tersisa</p>
@@ -153,8 +153,8 @@ export default function ProgressPage() {
 
       {/* Weekly Breakdown */}
       <Card className="p-6 mb-6">
-        <h3 className="font-semibold text-gray-800 mb-5 flex items-center gap-2">
-          <Calendar size={16} className="text-primary-600" />
+        <h3 className="font-semibold text-white mb-5 flex items-center gap-2">
+          <Calendar size={16} className="text-primary-400" />
           Progress Per Minggu
         </h3>
 
@@ -163,7 +163,7 @@ export default function ProgressPage() {
             <div key={week.week}>
               <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-gray-200">
                     Minggu {week.week}
                   </span>
                   {week.progress === 100 && (
@@ -175,13 +175,13 @@ export default function ProgressPage() {
                     {week.completed}/{week.total} tasks
                   </span>
                   <span className={`text-xs font-semibold ${
-                    week.progress === 100 ? "text-green-500" : "text-primary-600"
+                    week.progress === 100 ? "text-green-400" : "text-primary-400"
                   }`}>
                     {week.progress}%
                   </span>
                 </div>
               </div>
-              <div className="h-2 bg-surface-200 rounded-full overflow-hidden">
+              <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     week.progress === 100 ? "bg-green-500" : "bg-primary-500"
@@ -196,8 +196,8 @@ export default function ProgressPage() {
 
       {/* Task List Summary */}
       <Card className="p-6">
-        <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
-          <CheckCircle2 size={16} className="text-primary-600" />
+        <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+          <CheckCircle2 size={16} className="text-primary-400" />
           Ringkasan Task
         </h3>
 
@@ -207,13 +207,13 @@ export default function ProgressPage() {
               key={task._id}
               className={`flex items-center gap-3 p-3 rounded-xl text-sm ${
                 task.is_completed
-                  ? "bg-green-50 text-green-700"
-                  : "bg-surface-50 text-gray-600"
+                  ? "bg-green-500/10 text-green-400"
+                  : "bg-white/5 text-gray-200"
               }`}
             >
               {task.is_completed 
-                ? <CheckCircle2 size={15} className="text-green-500 flex-shrink-0" />
-                : <Circle size={15} className="text-gray-300 flex-shrink-0" />
+                ? <CheckCircle2 size={15} className="text-green-400 flex-shrink-0" />
+                : <Circle size={15} className="text-gray-400 flex-shrink-0" />
               }
               <span className={task.is_completed ? "line-through" : ""}>
                 W{task.week} D{task.day} — {task.topic}

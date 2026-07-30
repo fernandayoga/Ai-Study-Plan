@@ -35,7 +35,7 @@ export default function GoalCard({ goal }) {
                 </Badge>
               )}
             </div>
-            <h3 className="font-semibold text-gray-800 truncate group-hover:text-primary-600 transition-colors">
+            <h3 className="font-semibold text-white truncate group-hover:text-primary-400 transition-colors">
               {goal.title}
             </h3>
           </div>
@@ -69,12 +69,12 @@ export default function GoalCard({ goal }) {
           <div className="flex justify-between items-center mb-1.5">
             <span className="text-xs text-gray-400">Progress</span>
             <span className={`text-xs font-semibold ${
-              isDone ? "text-green-500" : "text-primary-600"
+              isDone ? "text-green-400" : "text-primary-400"
             }`}>
               {progress}%
             </span>
           </div>
-          <div className="h-1.5 bg-surface-200 rounded-full overflow-hidden">
+          <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-500 ${
                 isDone ? "bg-green-500" : "bg-primary-500"

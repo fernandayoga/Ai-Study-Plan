@@ -52,7 +52,7 @@ export default function Home() {
     <div className="overflow-hidden">
 
       {/* Hero Section */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-24 text-center">
+      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-26 pb-24 text-center">
         
         {/* Background decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-100 rounded-full blur-3xl opacity-40 -z-10" />
@@ -64,16 +64,16 @@ export default function Home() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
           Belajar Lebih Cerdas
           <br />
-          <span className="text-primary-600">Bersama AI</span>
+          <span className="text-primary-400">Bersama AI</span>
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg text-gray-300 max-w-xl mx-auto mb-10 leading-relaxed">
           Ceritakan goal belajar kamu, dan biarkan AI merancang 
-          roadmap personal yang terstruktur — dari hari pertama sampai selesai.
+          roadmap personal yang terstruktur dari hari pertama sampai selesai.
         </p>
 
         {/* CTA Buttons */}
@@ -94,14 +94,14 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-white border-y border-surface-200 py-20">
+      <section className="bg-transparent py-20 ">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+            <h2 className="text-3xl font-bold text-white mb-3">
               Semua yang Kamu Butuhkan
             </h2>
-            <p className="text-gray-500">Fitur lengkap untuk perjalanan belajar yang efektif</p>
+            <p className="text-gray-300">Fitur lengkap untuk perjalanan belajar yang efektif</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -110,8 +110,8 @@ export default function Home() {
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${feature.color} mb-4`}>
                   <feature.icon size={20} />
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
+                <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -122,10 +122,10 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
         
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
+          <h2 className="text-3xl font-bold text-white mb-3">
             Cara Kerjanya
           </h2>
-          <p className="text-gray-500">3 langkah mudah untuk mulai belajar dengan terstruktur</p>
+          <p className="text-gray-300">3 langkah mudah untuk mulai belajar dengan terstruktur</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -134,39 +134,19 @@ export default function Home() {
               
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="hidden sm:block absolute top-8 left-1/2 w-full h-px bg-surface-200 -z-10" />
+                <div className="hidden sm:block absolute top-8 left-1/2 w-full h-px bg-white/10 -z-10" />
               )}
 
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary-600 text-white text-xl font-bold mb-4 shadow-md">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary-600 text-white text-xl font-bold mb-4 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
                 {step.number}
               </div>
-              <h3 className="font-semibold text-gray-800 mb-2">{step.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+              <h3 className="font-semibold text-white mb-2">{step.title}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary-600 py-20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Siap Mulai Belajar?
-          </h2>
-          <p className="text-primary-100 mb-8 text-lg">
-            Buat rencana belajar pertamamu sekarang — gratis dan powered by AI.
-          </p>
-          <Link href="/goals/new">
-            <Button 
-              size="lg" 
-              className="bg-white text-red-500 hover:bg-primary-50 shadow-lg"
-            >
-              <Sparkles size={18} className="mr-2" />
-              Mulai Sekarang — Gratis!
-            </Button>
-          </Link>
-        </div>
-      </section>
 
     </div>
   );

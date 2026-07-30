@@ -4,15 +4,21 @@
   /* Font */
   --font-sans: var(--font-poppins), sans-serif;
 
-  /* Primary Colors (Indigo) */
-  --color-primary-50: #f0f4ff;
-  --color-primary-100: #e0e9ff;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
+  /* Primary Colors (Purple) */
+  --color-primary-50: #faf5ff;
+  --color-primary-100: #f3e8ff;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7e22ce;
 
-  /* Surface Colors */
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-200: #e2e8f0;
+  /* Surface Colors (Dark Purple) */
+  --color-surface-50: rgba(26, 11, 46, 0.4);
+  --color-surface-100: rgba(26, 11, 46, 0.6);
+  --color-surface-200: rgba(43, 22, 69, 0.5);
+}
+
+body {
+  background-color: black;
+  color: white;
 }
