@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased min-h-screen flex flex-col bg-transparent relative text-white`}>
+      <body className={`${poppins.variable} antialiased min-h-[100dvh] flex flex-col bg-transparent relative text-white`}>
         <AppBackground />
         <Navbar />
         <main className="flex-1 relative z-10">
