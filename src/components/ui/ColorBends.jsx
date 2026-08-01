@@ -197,8 +197,9 @@ export default function ColorBends({
       const w = container.clientWidth || 1;
       const h = container.clientHeight || 1;
       
-      // Cegah resize saat mobile browser address bar muncul/hilang (perubahan kecil pada height)
-      if (Math.abs(w - lastW) < 10 && Math.abs(h - lastH) < 100) {
+      // Jika lebar layar tidak berubah (hanya tinggi yang berubah akibat address bar HP), abaikan resize
+      if (Math.abs(w - lastW) < 10 && lastW !== 0) {
+        lastH = h;
         return;
       }
       
