@@ -190,9 +190,21 @@ export default function ColorBends({
 
     const clock = new THREE.Clock();
 
+    let lastW = 0;
+    let lastH = 0;
+
     const handleResize = () => {
       const w = container.clientWidth || 1;
       const h = container.clientHeight || 1;
+      
+      // Cegah resize saat mobile browser address bar muncul/hilang (perubahan kecil pada height)
+      if (Math.abs(w - lastW) < 10 && Math.abs(h - lastH) < 100) {
+        return;
+      }
+      
+      lastW = w;
+      lastH = h;
+      
       renderer.setSize(w, h, false);
       material.uniforms.uCanvas.value.set(w, h);
     };
