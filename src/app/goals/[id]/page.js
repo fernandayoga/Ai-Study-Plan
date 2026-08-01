@@ -46,6 +46,8 @@ export default function GoalDetailPage() {
     }
   };
 
+  console.log(goal)
+
   const handleDelete = async () => {
     if (!confirm("Yakin mau hapus goal ini?")) return;
     setDeleting(true);
@@ -138,9 +140,9 @@ export default function GoalDetailPage() {
           {/* Action Buttons */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <Link href={`/goals/${id}/progress`}>
-              <Button variant="secondary" size="sm">
-                <TrendingUp size={16} className="mr-1.5" />
-                Progress
+              <Button variant="secondary" size="sm" className="hover:scale-105 hover:-translate-y-0.5 transition-all">
+                <TrendingUp size={16} className="mr-1.5 text-primary-400 group-hover:text-primary-300 transition-colors" />
+                Lihat Progress
               </Button>
             </Link>
             <Button

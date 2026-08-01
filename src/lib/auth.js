@@ -1,9 +1,16 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import connectDB from "./mongodb";
 import User from "@/models/User";
 import { authConfig } from "./auth.config";
+
+class CustomAuthError extends CredentialsSignin {
+  constructor(message) {
+    super();
+    this.code = message; // Auth.js menggunakan properti code untuk passing error message
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
@@ -28,7 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           });
 
           if (!user) {
-            throw new Error("Email tidak terdaftar");
+            throw new CustomAuthError("Email tidak terdaftar, silakan daftar terlebih dahulu.");
           }
 
           // Cek password
@@ -38,7 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           );
 
           if (!isPasswordValid) {
-            throw new Error("Password salah");
+            throw new CustomAuthError("Email atau Password salah!");
           }
 
           return {
@@ -48,7 +55,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           };
 
         } catch (error) {
-          throw new Error(error.message);
+          if (error instanceof CustomAuthError) {
+            throw error;
+          }
+          throw new CustomAuthError("Terjadi kesalahan sistem.");
         }
       },
     }),

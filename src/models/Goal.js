@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 
+const ResourceSchema = new mongoose.Schema({
+  title: String,
+  link: String,
+});
+
 const TaskSchema = new mongoose.Schema({
   day: { type: Number, required: true },
   week: { type: Number, required: true },
@@ -7,6 +12,7 @@ const TaskSchema = new mongoose.Schema({
   task: { type: String, required: true },
   estimated_time: { type: String, required: true },
   is_completed: { type: Boolean, default: false },
+  resources: [ResourceSchema],
 });
 
 const GoalSchema = new mongoose.Schema(
@@ -31,5 +37,10 @@ const GoalSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Hapus model lama dari cache agar schema baru (resources) terbaca di Next.js dev
+if (process.env.NODE_ENV !== 'production') {
+  delete mongoose.models.Goal;
+}
 
 export default mongoose.models.Goal || mongoose.model("Goal", GoalSchema);

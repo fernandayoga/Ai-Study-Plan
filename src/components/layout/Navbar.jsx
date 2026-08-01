@@ -20,7 +20,7 @@ export default function Navbar() {
   const ShowDashboard = !disableDashboardPaths.includes(pathname);
 
   // Sembunyikan Navbar di halaman login dan register
-  if (["/login", "/register","/"].includes(pathname)) {
+  if (["/login", "/register","/", "/goals/new"].includes(pathname)) {
     return null;
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Clock, CheckCircle2, Circle, Loader2 } from "lucide-react";
+import { Clock, CheckCircle2, Circle, Loader2, ExternalLink } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 
 export default function TaskCard({ task, goalId, onUpdate }) {
@@ -74,6 +74,30 @@ export default function TaskCard({ task, goalId, onUpdate }) {
           <Clock size={12} />
           <span>{task.estimated_time}</span>
         </div>
+
+        {task.resources && task.resources.length > 0 && (
+          <div className="mt-4 pt-3 border-t border-white/5">
+            <p className="text-xs font-medium text-gray-400 mb-2">Rekomendasi Belajar :</p>
+            <div className="flex flex-wrap gap-2">
+              {task.resources.map((res, i) => (
+                <a 
+                  key={i} 
+                  href={res.link} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
+                    task.is_completed 
+                      ? "bg-green-500/10 hover:bg-green-500/20 text-green-400 border-green-500/20" 
+                      : "bg-primary-500/10 hover:bg-primary-500/20 text-primary-400 border-primary-500/20"
+                  }`}
+                >
+                  <ExternalLink size={12} />
+                  {res.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
     </div>

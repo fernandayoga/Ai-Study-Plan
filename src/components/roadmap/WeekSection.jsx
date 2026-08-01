@@ -18,7 +18,7 @@ export default function WeekSection({ weekNumber, tasks, goalId, onUpdate }) {
           {isWeekDone ? <CheckCircle2 size={18} /> : `W${weekNumber}`}
         </div>
         <div>
-          <h3 className="font-semibold text-gray-800">
+          <h3 className="font-semibold text-white">
             Minggu {weekNumber}
           </h3>
           <p className="text-xs text-gray-400">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -40,10 +40,31 @@ const levels = [
 
 const durations = [1, 2, 4, 8, 12];
 
+const loadingMessages = [
+  "Menganalisis topik... 🧠",
+  "Menyusun kurikulum belajar... 📚",
+  "Mencari video rekomendasi di YouTube... 🎥",
+  "Menyiapkan jadwal khusus untukmu... ⏳"
+];
+
 export default function NewGoalPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      interval = setInterval(() => {
+        setLoadingStep((prev) => (prev < loadingMessages.length - 1 ? prev + 1 : prev));
+      }, 3000);
+    } else {
+      setLoadingStep(0);
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const [form, setForm] = useState({
     title: "",
@@ -86,15 +107,17 @@ export default function NewGoalPage() {
     }
   };
 
+  
+
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
       {/* Back Button */}
             <button
-              onClick={() => router.push("/dashboard")}
+              onClick={() => router.back()}
               className="flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
             >
               <ArrowLeft size={16} />
-              Kembali ke Dashboard
+              Kembali 
             </button>
       
       {/* Header */}
@@ -207,8 +230,9 @@ export default function NewGoalPage() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
-            ⚠️ {error}
+          <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl text-sm flex items-start gap-2">
+            <span>⚠️</span>
+            <span>{error}</span>
           </div>
         )}
 
@@ -253,9 +277,15 @@ export default function NewGoalPage() {
           )}
         </Button>
 
-        <p className="text-center text-xs text-gray-400">
-          Proses generate membutuhkan 10-30 detik ⏱️
-        </p>
+        {loading ? (
+          <p className="text-center text-xs text-primary-400 font-medium animate-pulse">
+            {loadingMessages[loadingStep]}
+          </p>
+        ) : (
+          <p className="text-center text-xs text-gray-400">
+            AI akan menyusunkan jadwal terstruktur untukmu ✨
+          </p>
+        )}
       </Card>
     </div>
   );
