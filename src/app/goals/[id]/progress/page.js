@@ -87,7 +87,7 @@ export default function ProgressPage() {
           <TrendingUp size={22} className="text-primary-400" />
           Progress Tracking
         </h1>
-        <p className="text-gray-300 text-sm mt-1">{goal.title}</p>
+        <p className="text-gray-300 text-sm mt-1">{`Belajar ${goal.title}`}</p>
       </div>
 
       {/* Overall Progress Card */}
