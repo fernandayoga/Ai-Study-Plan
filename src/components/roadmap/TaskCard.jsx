@@ -53,11 +53,11 @@ export default function TaskCard({ task, goalId, onUpdate }) {
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-1">
-          <Badge variant={task.is_completed ? "success" : "primary"}>
+        <div className="flex items-start gap-2 mb-1">
+          <Badge variant={task.is_completed ? "success" : "primary"} className="flex-shrink-0 whitespace-nowrap mt-0.5">
             Day {task.day}
           </Badge>
-          <span className={`text-sm font-semibold ${
+          <span className={`text-sm font-semibold leading-snug ${
             task.is_completed ? "text-green-400 " : "text-white"
           }`}>
             {task.topic}

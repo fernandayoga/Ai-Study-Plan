@@ -17,6 +17,7 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
+    console.log(id);
 
     // Kalau ada query ?id=xxx, ambil 1 goal dengan roadmap lengkap
     if (id) {
@@ -35,7 +36,7 @@ export async function GET(request) {
       .sort({ createdAt: -1 })
       .select("-roadmap");
 
-    return NextResponse.json({ success: true, goals });
+    return NextResponse.json({ success: true, goals, userName: session.user.name });
 
   } catch (error) {
     return NextResponse.json(

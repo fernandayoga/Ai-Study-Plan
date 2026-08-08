@@ -18,6 +18,7 @@ import { calcProgress } from "@/lib/utils";
 
 export default function DashboardPage() {
   const [goals, setGoals] = useState([]);
+  const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,7 +29,10 @@ export default function DashboardPage() {
     try {
       const res = await fetch("/api/goals");
       const data = await res.json();
-      if (data.success) setGoals(data.goals);
+      if (data.success) {
+        setGoals(data.goals);
+        if (data.userName) setUserName(data.userName);
+      }
     } catch (error) {
       console.error("Error fetching goals:", error);
     } finally {
@@ -56,9 +60,11 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-white">
+            Halo, {userName || "Learner"}! 👋
+          </h1>
           <p className="text-gray-300 text-sm mt-0.5">
-            Pantau semua rencana belajar kamu
+            Siap untuk melanjutkan petualangan belajarmu hari ini?
           </p>
         </div>
           <Link href="/goals/new">

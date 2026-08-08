@@ -109,8 +109,8 @@ export default function GoalDetailPage() {
 
       {/* Header Card */}
       <Card className="p-6 mb-6">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div className="flex-1 w-full">
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <Badge variant={levelColors[goal.level]}>{goal.level}</Badge>
               <Badge variant="default">
@@ -138,9 +138,9 @@ export default function GoalDetailPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <Link href={`/goals/${id}/progress`}>
-              <Button variant="secondary" size="sm" className="hover:scale-105 hover:-translate-y-0.5 transition-all">
+          <div className="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-white/10 mt-2 sm:mt-0">
+            <Link href={`/goals/${id}/progress`} className="flex-1 sm:flex-none">
+              <Button variant="secondary" size="sm" className="w-full sm:w-auto hover:scale-105 hover:-translate-y-0.5 transition-all justify-center">
                 <TrendingUp size={16} className="mr-1.5 text-primary-400 group-hover:text-primary-300 transition-colors" />
                 Lihat Progress
               </Button>
@@ -150,7 +150,7 @@ export default function GoalDetailPage() {
               size="sm"
               onClick={handleDelete}
               disabled={deleting}
-              className="text-red-400 hover:text-red-600 hover:bg-red-50"
+              className="text-red-400 hover:text-red-600 hover:bg-red-50 flex-shrink-0"
             >
               {deleting ? (
                 <Loader2 size={16} className="animate-spin" />

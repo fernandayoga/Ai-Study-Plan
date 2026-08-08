@@ -278,7 +278,7 @@ export default function NewGoalPage() {
         </Button>
 
         {loading ? (
-          <p className="text-center text-xs text-primary-400 font-medium animate-pulse">
+          <p className="text-center text-xs text-white font-medium animate-pulse">
             {loadingMessages[loadingStep]}
           </p>
         ) : (
